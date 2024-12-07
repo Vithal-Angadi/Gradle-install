@@ -1,0 +1,31 @@
+#Method 2: Install the Latest Version Manually
+#This method ensures you get the latest Gradle version.
+
+#Install Required Dependencies:
+sudo apt update
+sudo apt install openjdk-11-jdk wget unzip -y
+
+#Download the Latest Gradle Binary: Visit the Gradle Releases Page to get the latest version number. Replace X.Y.Z below with the desired version.
+wget https://services.gradle.org/distributions/gradle-X.Y.Z-bin.zip
+
+#Extract the Gradle Archive:
+sudo unzip gradle-X.Y.Z-bin.zip -d /opt/gradle
+
+#Create a Symbolic Link:
+sudo ln -s /opt/gradle/gradle-X.Y.Z /opt/gradle/latest
+
+#Configure Environment Variables: Open the environment configuration file:
+sudo nano /etc/profile.d/gradle.sh
+
+#Add the following lines:
+export GRADLE_HOME=/opt/gradle/latest
+export PATH=$GRADLE_HOME/bin:$PATH
+
+#Make the Script Executable:
+sudo chmod +x /etc/profile.d/gradle.sh
+
+#Apply Changes:
+source /etc/profile.d/gradle.sh
+
+#Verify Installation:
+gradle -v
